@@ -1,21 +1,19 @@
-const multer = require("multer");
 const Products = require("../models/product");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-var upload = multer({ storage: storage });
 
 const productCtrl = {
   products: async (req, res) => {
     try {
       const product = await Products.find();
       res.send(product);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  oneProduct: async (req, res) => {
+    try {
+      const product = await Products.findById(req.params.id)
+      res.send(product)
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

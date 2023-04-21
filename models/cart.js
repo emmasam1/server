@@ -19,6 +19,7 @@ const cartSchema = new Schema(
         shortDescription: { type: String },
       },
     ],
+    items:{type:Number,default:0},
     total_price: { type: Number },
     is_checked_out: { type: Boolean,default:false },
   },

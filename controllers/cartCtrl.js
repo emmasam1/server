@@ -29,6 +29,7 @@ const cartCtrl = {
             total_price += x.quantity * x.price;
           });
           cart.total_price = total_price.toFixed(2);
+          cart.items = cart.products.length;
         } else {
           cart.products.push({
             product_id: req.body.product_id,
@@ -44,6 +45,7 @@ const cartCtrl = {
           });
 
           cart.total_price = total_price.toFixed(2);
+          cart.items = cart.products.length;
         }
       } else {
         req.body.products.push({
@@ -55,6 +57,7 @@ const cartCtrl = {
           shortDescription: req.body.shortDescription,
         });
         req.body.total_price = req.body.price * req.body.quantity;
+        req.body.items = req.body.products.length;
 
         cart = new Cart(req.body);
       }

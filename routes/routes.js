@@ -33,6 +33,8 @@ router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser)
 // Ptoducts
 router.get('/products', productCtrl.products)
 
+router.get('/oneProduct/:id', productCtrl.oneProduct)
+
 router.delete('/delProduct/:id', productCtrl.delProduct)
 
 router.post('/product', upload.single('image'), productCtrl.product)
